@@ -41,8 +41,9 @@ if __name__ == '__main__':
     time = len(oper_re) + 1
 
     model = load_model()
-    print(oper_re)
+    # print(oper_re)
     for i in range(8):
+        #因data只到3/21，故預測8天
         data = data_preprocessing(oper_re[-16:],oper_re_percent[-16:],time)
 
         #predict
@@ -57,7 +58,7 @@ if __name__ == '__main__':
     #save csv
     dict_temp  = {}
     dict_temp['date'] = ['20210323','20210324','20210325','20210326','20210327','20210328','20210329']
-    dict_temp['operating_reserve(MW)'] = oper_re[-7:]
+    dict_temp['operating_reserve(MW)'] = oper_re[-7:]#取最後7天
     dataframe = pd.DataFrame.from_dict(dict_temp)
     dataframe.to_csv(args.output,index=0)
-    print(oper_re)
+    # print(oper_re)
